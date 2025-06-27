@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int f(vector <int> &v, int idx, vector <int> &memo) {
+        if (idx>=v.size()) return 0;
+        if (memo[idx] != -1) return memo[idx];
+        int left = f(v, idx+2, memo) + v[idx];
+        int right = f(v, idx+3, memo) +v[idx];
+        return memo[idx] = max(left, right);
+    }
+    int rob(vector<int>& nums) {
+        int n = nums.size();
+        vector <int> memo1 (110, -1), memo2(110, -1);
+        int ans = f(nums, 0, memo1);
+        int ans2 = f(nums, 1, memo2);
+        return max(ans, ans2);
+    }
+};

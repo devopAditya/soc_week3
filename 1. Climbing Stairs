@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int f (int n, vector <int> &v) {
+        if (v[n] != -1) return v[n];
+        else if (n>=2) {
+            return v[n] = f(n-2, v) + f(n-1, v);
+        }
+        else if (n==1) {
+            return f(n-1, v);
+        }
+        else return 1;
+    }
+    int climbStairs(int n) {
+        vector <int> v (50, -1);
+        int ans = f(n, v);
+        return ans;
+    }
+};
